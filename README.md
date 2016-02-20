@@ -1,5 +1,5 @@
 # Date.js
-Parse and format dates using LDML compliant <a href="http://unicode.org/reports/tr35/tr35-dates.html#Contents">Date Format Patterns</a>.
+Parse and format dates using LDML compliant <a href="http://unicode.org/reports/tr35/tr35-dates.html#Contents" target="_blank">Date Format Patterns</a>.
 <p>A full specification of Date.js is provided by the tests in DateSpec.js.  In brief, Date.js provides four global functions:</p>
 
 <ul style="font-family: Courier">
