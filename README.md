@@ -11,7 +11,7 @@ Parse and format dates using LDML compliant <a href="http://unicode.org/reports/
 </ul>
 The pattern parameter is an LDML compliant Date Format Pattern string.  These functions are built for partial application:
 
-<pre><code style="color: green;">
+<pre><code>
 var dateParser = parseDate('dd-MMM-yyyy');
 var date = dateParser('01-Jan-2000');
 </code></pre>
