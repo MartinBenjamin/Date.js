@@ -6,8 +6,8 @@ Localized parsing and formatting of dates using LDML compliant <a href="http://u
 <ul>
 <li>Date.prototype.formatDate(pattern)</li>
 <li>parseDate(pattern, dateString)</li>
-<li>Date.prototype.formatUtcDate(pattern)</li>
-<li>parseUtcDate(pattern, dateString)</li>
+<li>Date.prototype.formatUTCDate(pattern)</li>
+<li>parseUTCDate(pattern, dateString)</li>
 </ul>
 The pattern parameter is an LDML compliant Date Format Pattern string.  The parsing functions are built for partial application:
 
