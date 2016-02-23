@@ -14,6 +14,8 @@
     }
 };
 
+var maxYear = 9999;
+
 describe(
     'lpad',
     function()
@@ -787,7 +789,7 @@ describe(
                                     "new Date(0).setFullYear(" + year.toString() + ")");
                             });
 
-                        [ '', 'a', 'b', 'c', 'a1', '1a'].forEach(
+                        [ '', 'a', 'b', 'c', 'a1', '1a', (maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -833,7 +835,7 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a', '10000'].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', (maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -1491,7 +1493,7 @@ describe(
                                     "new Date(0).setUTCFullYear(" + year.toString() + ")");
                             });
 
-                        ['', 'a', 'b', 'c', 'a1', '1a'].forEach(
+                        ['', 'a', 'b', 'c', 'a1', '1a', (maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -1537,7 +1539,7 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a', '10000'].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', (maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
