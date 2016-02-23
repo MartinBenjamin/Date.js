@@ -88,7 +88,7 @@ var parseUTCDate;
         {
             field: 'year',
             format: function(year) { return year.toString(); },
-            regex: '(\\d{1,4})',
+            regex: '(\\d{1,})',
             convert: Number
         },
         yy:
@@ -102,7 +102,7 @@ var parseUTCDate;
         {
             field: 'year',
             format: function(year) { return year.toString().lpad('0000'); },
-            regex: '(\\d{4})',
+            regex: '(\\d{4,})',
             convert: Number
         },
         M:
