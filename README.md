@@ -1,5 +1,5 @@
-# Date.js
-## Synopsis
+<h1>Date.js</h1>
+<h2>Synopsis</h1>
 Localized parsing and formatting of dates using LDML compliant <a href="http://unicode.org/reports/tr35/tr35-dates.html" target="_blank">Date Format Patterns</a>.
 <p>A full specification of Date.js is provided by the tests in DateSpec.js.  In brief, Date.js provides four functions:</p>
 
@@ -16,7 +16,7 @@ var parse = parseDate('dd-MMM-yyyy');
 var date = parse('01-Jan-2000');
 </code></pre>
 
-##cldr-json
+<h2>cldr-json</h2>
 Localization is achieved via <a href="https://github.com/unicode-cldr/cldr-json" target="_blank">cldr-json</a>.  The necessary cldr-json for the en-GB locale is embedded within a script tag within DateSpecRunner.html:
 
 <pre><code>
