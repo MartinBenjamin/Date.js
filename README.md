@@ -15,6 +15,7 @@ The pattern parameter is an LDML compliant Date Format Pattern string.  The pars
 var parse = parseDate('dd-MMM-yyyy');
 var date = parse('01-Jan-2000');
 </code></pre>
+
 ##cldr-json
 Localization is achieved via <a href="https://github.com/unicode-cldr/cldr-json" target="_blank">cldr-json</a>.  The necessary cldr-json for the en-GB locale is embedded within a script tag within DateSpecRunner.html:
 
@@ -25,3 +26,5 @@ Localization is achieved via <a href="https://github.com/unicode-cldr/cldr-json"
   Date.prototype.calendar = cldr.main['en-GB'].dates.calendars.gregorian;
 &lt;/script>
 </code></pre>
+
+Date.js locates the necessary cldr-json via the property <code>Date.prototype.calendar</code>.  cldr-json for dates for all locales is available within GitHub <a href="https://github.com/unicode-cldr/cldr-dates-full/tree/master/main" target="_blank">here</a>
