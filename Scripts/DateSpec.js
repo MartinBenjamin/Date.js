@@ -833,13 +833,13 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a'].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', '10000'].forEach(
                             function(
                                 year
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseDate('yy', '" + year + "')",
+                                    "parseDate('yyyy', '" + year + "')",
                                     "null");
                             });
                     });
@@ -1537,13 +1537,13 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a'].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', '10000'].forEach(
                             function(
                                 year
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseUTCDate('yy', '" + year + "')",
+                                    "parseUTCDate('yyyy', '" + year + "')",
                                     "null");
                             });
                     });
