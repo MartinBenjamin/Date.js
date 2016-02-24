@@ -14,8 +14,6 @@
     }
 };
 
-var maxYear = 9999;
-
 describe(
     'lpad',
     function()
@@ -31,7 +29,7 @@ describe(
     'Date',
     function()
     {
-        var calendar = Date.prototype.calendar;
+        var calendar = Date.calendar;
 
         var testYears1 = [
             1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -47,7 +45,7 @@ describe(
         ];
         var testYears = testYears2;
 
-        assert.strictEquals("typeof Date.prototype.calendar", "'object'");
+        assert.strictEquals("typeof Date.calendar", "'object'");
         assert.strictEquals("typeof dateFieldSymbols", "'object'");
 
         describe(
@@ -300,7 +298,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEE')",
-                                "'" + date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -313,7 +311,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEE')",
-                                "'" + date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -326,7 +324,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEE')",
-                                "'" + date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -339,7 +337,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEEE')",
-                                "'" + date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -673,7 +671,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEE')",
-                                "'" + date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -686,7 +684,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEE')",
-                                "'" + date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -699,7 +697,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEE')",
-                                "'" + date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -712,7 +710,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEEE')",
-                                "'" + date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
+                                "'" + Date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -789,7 +787,7 @@ describe(
                                     "new Date(0).setFullYear(" + year.toString() + ")");
                             });
 
-                        [ '', 'a', 'b', 'c', 'a1', '1a', (maxYear + 1).toString()].forEach(
+                        [ '', 'a', 'b', 'c', 'a1', '1a', (Date.maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -835,7 +833,7 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a', (maxYear + 1).toString()].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', (Date.maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -1493,7 +1491,7 @@ describe(
                                     "new Date(0).setUTCFullYear(" + year.toString() + ")");
                             });
 
-                        ['', 'a', 'b', 'c', 'a1', '1a', (maxYear + 1).toString()].forEach(
+                        ['', 'a', 'b', 'c', 'a1', '1a', (Date.maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )
@@ -1539,7 +1537,7 @@ describe(
                             });
 
 
-                        ['', 'a', 'b', 'c', 'a1000', '1000a', (maxYear + 1).toString()].forEach(
+                        ['', 'a', 'b', 'c', 'a1000', '1000a', (Date.maxYear + 1).toString()].forEach(
                             function(
                                 year
                                 )

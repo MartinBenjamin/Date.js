@@ -16,12 +16,14 @@ Date.dayKeys =
         'sat'
     ];
 
+Date.maxYear = 9999;
+
 var dateFieldSymbols;
 var parseDate;
 var parseUTCDate;
 (function()
 {
-    var calendar = Date.prototype.calendar;
+    var calendar = Date.calendar;
 
     var monthKeys =
         [
@@ -506,15 +508,15 @@ var parseUTCDate;
                                 matches);
                         });
 
-                    if(dateComponents.year   <    1 ||
-                       dateComponents.year   > 9999 ||
-                       dateComponents.month  <    1 ||
-                       dateComponents.month  >   12 ||
-                       dateComponents.day    <    1 ||
+                    if(dateComponents.year   <   1 ||
+                       dateComponents.year   > Date.maxYear ||
+                       dateComponents.month  <   1 ||
+                       dateComponents.month  >  12 ||
+                       dateComponents.day    <   1 ||
                        dateComponents.day    > new Date(dateComponents.year, dateComponents.month, 0).getDate() ||
-                       dateComponents.hour   >=  24 ||
-                       dateComponents.minute >=  60 ||
-                       dateComponents.second >=  60)
+                       dateComponents.hour   >= 24 ||
+                       dateComponents.minute >= 60 ||
+                       dateComponents.second >= 60)
                         return null;
 
                     return buildDate(dateComponents);

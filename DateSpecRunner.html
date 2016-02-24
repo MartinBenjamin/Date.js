@@ -476,7 +476,7 @@
 
     <script type="text/javascript">
         var cldr = JSON.parse(document.getElementById('cldr').innerHTML);
-        Date.prototype.calendar = cldr.main['en-GB'].dates.calendars.gregorian;
+        Date.calendar = cldr.main['en-GB'].dates.calendars.gregorian;
     </script>
     <script type="text/javascript" src="Scripts/Date.js"></script>
 

@@ -26,8 +26,8 @@ Localization is achieved via <a href="https://github.com/unicode-cldr/cldr-json"
 &lt;script id="cldr" type="application/json">...&lt;/script>
 &lt;script type="text/javascript">
   var cldr = JSON.parse(document.getElementById('cldr').innerHTML);
-  Date.prototype.calendar = cldr.main['en-GB'].dates.calendars.gregorian;
+  Date.calendar = cldr.main['en-GB'].dates.calendars.gregorian;
 &lt;/script>
 </code></pre>
 
-Date.js locates the necessary cldr-json via the property <code>Date.prototype.calendar</code>.  cldr-json for dates for all locales is available within GitHub <a href="https://github.com/unicode-cldr/cldr-dates-full/tree/master/main" target="_blank">here</a>.
+Date.js locates the necessary cldr-json via the property <code>Date.calendar</code>.  cldr-json for dates for all locales is available within GitHub <a href="https://github.com/unicode-cldr/cldr-dates-full/tree/master/main" target="_blank">here</a>.
