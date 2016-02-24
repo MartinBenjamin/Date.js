@@ -5,23 +5,7 @@
     return pad.substring(this.length) + this;
 };
 
-var monthKeys =
-    [
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12'
-    ];
-
-var dayKeys =
+Date.dayKeys =
     [
         'sun',
         'mon',
@@ -38,6 +22,22 @@ var parseUTCDate;
 (function()
 {
     var calendar = Date.prototype.calendar;
+
+    var monthKeys =
+        [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '10',
+            '11',
+            '12'
+        ];
 
     function monthSymbol(
         names
@@ -78,7 +78,7 @@ var parseUTCDate;
             weekDay
             )
         {
-            return names[dayKeys[weekDay]];
+            return names[Date.dayKeys[weekDay]];
         };
     }
 

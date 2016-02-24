@@ -300,7 +300,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEE')",
-                                "'" + date.calendar.days.format.abbreviated[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -313,7 +313,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEE')",
-                                "'" + date.calendar.days.format.wide[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -326,7 +326,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEE')",
-                                "'" + date.calendar.days.format.narrow[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -339,7 +339,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEEE')",
-                                "'" + date.calendar.days.format.short[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -673,7 +673,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEE')",
-                                "'" + date.calendar.days.format.abbreviated[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -686,7 +686,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEE')",
-                                "'" + date.calendar.days.format.wide[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -699,7 +699,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEE')",
-                                "'" + date.calendar.days.format.narrow[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
@@ -712,7 +712,7 @@ describe(
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEEE')",
-                                "'" + date.calendar.days.format.short[dayKeys[date.getDay()]] + "'");
+                                "'" + date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
 
