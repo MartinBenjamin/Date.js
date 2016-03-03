@@ -131,7 +131,6 @@ var parseUTCDate;
             regex: '(\\d{1,2})',
             convert: Number
         },
-
         LL:
         {
             field: 'month',
