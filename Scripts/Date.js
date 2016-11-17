@@ -295,6 +295,35 @@ var parseUTCDate;
         }
     };
 
+    var escapeSymbol = "'";
+    var escapedEscapeSymbol = escapeSymbol + escapeSymbol;
+
+    dateFieldSymbols[escapeSymbol       ] = {};
+    dateFieldSymbols[escapedEscapeSymbol] = {};
+
+    function escape(
+        f
+        )
+    {
+        var escaping = false;
+
+        return function(
+            symbol
+            )
+        {
+            if(symbol === escapeSymbol)
+            {
+                escaping = !escaping;
+                return '';
+            }
+
+            if(symbol === escapedEscapeSymbol)
+                return escapeSymbol;
+
+            return escaping ? symbol : f(symbol);
+        };
+    }
+
     var symbols = [];
 
     for(var symbol in dateFieldSymbols)
@@ -315,12 +344,12 @@ var parseUTCDate;
             return 0;
         });
 
+    var symbolRegex = new RegExp(
+        '(' + symbols.join('|') + ')',
+        'g');
+
     (function()
     {
-        var symbolRegex = new RegExp(
-            '(' + symbols.join('|') + ')',
-            'g');
-
         function getDateComponents(
             date
             )
@@ -367,13 +396,14 @@ var parseUTCDate;
 
                 return dateFormatPattern.replace(
                     symbolRegex,
-                    function(
-                        symbolName
-                        )
-                    {
-                        var symbol = dateFieldSymbols[symbolName];
-                        return symbol.format(dateComponents[symbol.field]);
-                    });
+                    escape(
+                        function(
+                            symbol
+                            )
+                        {
+                            var symbolObject = dateFieldSymbols[symbol];
+                            return symbolObject.format(dateComponents[symbolObject.field]);
+                    }));
             };
         }
 
@@ -381,20 +411,8 @@ var parseUTCDate;
         Date.prototype.formatUTCDate = buildFormatDate(getUTCDateComponents);
     })();
 
-    symbols = symbols.filter(
-        function(
-            symbol
-            )
-        {
-            return dateFieldSymbols[symbol].regex;
-        });
-
     (function()
     {
-        var symbolRegex = new RegExp(
-            '(' + symbols.join('|') + ')',
-            'g');
-
         function buildDate(
             dateComponents
             )
@@ -456,26 +474,26 @@ var parseUTCDate;
                     /[\^$\\.*+?()[\]{}|]/g,
                     '\\$&');
 
+                var symbolObjects = [];
                 var regex = dateFormatPattern.replace(
                     symbolRegex,
-                    function(
-                        symbol
-                        )
-                    {
-                        return dateFieldSymbols[symbol].regex;
-                    });
+                    escape(
+                        function(
+                            symbol
+                            )
+                        {
+                            var symbolObject = dateFieldSymbols[symbol];
+
+                            if(!symbolObject.regex)
+                                return symbol;
+
+                            symbolObjects.push(symbolObject);
+                            return symbolObject.regex;
+                        }));
 
                 regex = new RegExp(
                     '^' + regex + '$',
                     'i');
-
-                var symbols = dateFormatPattern.match(symbolRegex).map(
-                    function(
-                        symbol
-                        )
-                    {
-                        return dateFieldSymbols[symbol];
-                    });
 
                 function parse(
                     value
@@ -497,12 +515,12 @@ var parseUTCDate;
                     };
 
                     matches.shift();
-                    symbols.forEach(
+                    symbolObjects.forEach(
                         function(
-                            symbol
+                            symbolObject
                             )
                         {
-                            dateComponents[symbol.field] = symbol.convert(
+                            dateComponents[symbolObject.field] = symbolObject.convert(
                                 matches.shift(),
                                 matches);
                         });

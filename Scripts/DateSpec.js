@@ -419,6 +419,44 @@ describe(
                                     (offset % 60).toString().lpad('00') + "'");
                             });
                     });
+
+                describe(
+                    "Symbol: '",
+                    function()
+                    {
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'A'yyyy\")",
+                            "'A2000'");
+
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'yyyy'yyyy\")",
+                            "'yyyy2000'");
+                    });
+
+                describe(
+                    "Symbol: ''",
+                    function()
+                    {
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"''yyyy\")",
+                            "\"'2000\"");
+
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'''AB'yyyy\")",
+                            "\"'AB2000\"");
+
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'''''AB'yyyy\")",
+                            "\"''AB2000\"");
+
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'A''B'yyyy\")",
+                            "\"A'B2000\"");
+
+                        assert.strictEquals(
+                            "new Date(2000, 0, 1).formatDate(\"'AB'''yyyy\")",
+                            "\"AB'2000\"");
+                    });
             });
 
         describe(
@@ -1399,6 +1437,45 @@ describe(
                             assert.strictEquals(
                                 "parseDate('y-MXXX', '2000-7-" + hour.toString().lpad('00') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
+                    });
+
+                describe(
+                    "Symbol: '",
+                    function()
+                    {
+                        assert.strictEquals(
+                            "parseDate(\"'A'yyyy\", \"A2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                        assert.strictEquals(
+                            "parseDate(\"'yyyy'yyyy\", \"yyyy2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                    });
+
+                describe(
+                    "Symbol: ''",
+                    function()
+                    {
+                        assert.strictEquals(
+                            "parseDate(\"''yyyy\", \"'2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                        assert.strictEquals(
+                            "parseDate(\"'''AB'yyyy\", \"'AB2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                        assert.strictEquals(
+                            "parseDate(\"'''''AB'yyyy\", \"''AB2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                        assert.strictEquals(
+                            "parseDate(\"'A''B'yyyy\", \"A'B2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
+
+                        assert.strictEquals(
+                            "parseDate(\"'AB'''yyyy\", \"AB'2000\").valueOf()",
+                            "new Date(2000, 0, 1).valueOf()");
                     });
 
                 describe(
