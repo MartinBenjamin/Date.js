@@ -21,6 +21,8 @@ Date.maxYear = 9999;
 var dateFieldSymbols;
 var parseDate;
 var parseUTCDate;
+var formatDate;
+var formatUTCDate;
 (function()
 {
     var calendar = Date.calendar;
@@ -389,10 +391,11 @@ var parseUTCDate;
             )
         {
             return function(
-                dateFormatPattern
+                dateFormatPattern,
+                date
                 )
             {
-                var dateComponents = getDateComponents(this);
+                var dateComponents = getDateComponents(date);
 
                 return dateFormatPattern.replace(
                     symbolRegex,
@@ -407,8 +410,24 @@ var parseUTCDate;
             };
         }
 
-        Date.prototype.formatDate    = buildFormatDate(getDateComponents   );
-        Date.prototype.formatUTCDate = buildFormatDate(getUTCDateComponents);
+        formatDate    = buildFormatDate(getDateComponents   );
+        formatUTCDate = buildFormatDate(getUTCDateComponents);
+        Date.prototype.formatDate = function(
+            dateFormatPattern
+            )
+        {
+            return formatDate(
+                dateFormatPattern,
+                this);
+        };
+        Date.prototype.formatUTCDate = function(
+            dateFormatPattern
+            )
+        {
+            return formatUTCDate(
+                dateFormatPattern,
+                this);
+        };
     })();
 
     (function()
