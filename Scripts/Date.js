@@ -395,18 +395,24 @@ var formatUTCDate;
                 date
                 )
             {
-                var dateComponents = getDateComponents(date);
+                function format(
+                    date
+                    )
+                {
+                    var dateComponents = getDateComponents(date);
+                    return dateFormatPattern.replace(
+                        symbolRegex,
+                        escape(
+                            function(
+                                symbol
+                                )
+                            {
+                                var symbolObject = dateFieldSymbols[symbol];
+                                return symbolObject.format(dateComponents[symbolObject.field]);
+                        }));
+                }
 
-                return dateFormatPattern.replace(
-                    symbolRegex,
-                    escape(
-                        function(
-                            symbol
-                            )
-                        {
-                            var symbolObject = dateFieldSymbols[symbol];
-                            return symbolObject.format(dateComponents[symbolObject.field]);
-                    }));
+                return typeof date == 'undefined' ? format : format(date);
             };
         }
 
