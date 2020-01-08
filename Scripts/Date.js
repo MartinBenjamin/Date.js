@@ -1,11 +1,4 @@
-﻿String.prototype.lpad = function(
-    pad
-    )
-{
-    return pad.substring(this.length) + this;
-};
-
-Date.dayKeys =
+﻿Date.dayKeys =
     [
         'sun',
         'mon',
@@ -98,14 +91,14 @@ var formatUTCDate;
         yy:
         {
             field: 'year',
-            format: function(year) { return (year % 100).toString().lpad('00'); },
+            format: function(year) { return (year % 100).toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: function(value) { return Number(value) + Math.floor(new Date().getFullYear() / 100) * 100; }
         },
         yyyy:
         {
             field: 'year',
-            format: function(year) { return year.toString().lpad('0000'); },
+            format: function(year) { return year.toString().padStart(4, '0'); },
             regex: '(\\d{4,})',
             convert: Number
         },
@@ -119,7 +112,7 @@ var formatUTCDate;
         MM:
         {
             field: 'month',
-            format: function(month) { return month.toString().lpad('00'); },
+            format: function(month) { return month.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
@@ -136,7 +129,7 @@ var formatUTCDate;
         LL:
         {
             field: 'month',
-            format: function(month) { return month.toString().lpad('00'); },
+            format: function(month) { return month.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
@@ -153,7 +146,7 @@ var formatUTCDate;
         dd:
         {
             field: 'day',
-            format: function(day) { return day.toString().lpad('00'); },
+            format: function(day) { return day.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
@@ -171,7 +164,7 @@ var formatUTCDate;
         HH:
         {
             field: 'hour',
-            format: function(hour) { return hour.toString().lpad('00'); },
+            format: function(hour) { return hour.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
@@ -185,7 +178,7 @@ var formatUTCDate;
         mm:
         {
             field: 'minute',
-            format: function(minute) { return minute.toString().lpad('00'); },
+            format: function(minute) { return minute.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
@@ -199,14 +192,14 @@ var formatUTCDate;
         ss:
         {
             field: 'second',
-            format: function(second) { return second.toString().lpad('00'); },
+            format: function(second) { return second.toString().padStart(2, '0'); },
             regex: '(\\d{2})',
             convert: Number
         },
         SSS:
         {
             field: 'millisecond',
-            format: function(millisecond) { return millisecond.toString().lpad('000'); },
+            format: function(millisecond) { return millisecond.toString().padStart(3, '0'); },
             regex: '(\\d{3})',
             convert: Number
         },
@@ -220,9 +213,9 @@ var formatUTCDate;
             {
                 var absZone = Math.abs(zone);
                 return (zone >= 0 ? '+' : '-') +
-                    Math.floor(absZone / 60).toString().lpad('00') +
+                    Math.floor(absZone / 60).toString().padStart(2, '0') +
                     (separator ? separator : '') +
-                    (absZone % 60).toString().lpad('00')
+                    (absZone % 60).toString().padStart(2, '0')
             },
             regex: '((\\+|\\-)(\\d{2})(\\d{2}))',
             convert: function(

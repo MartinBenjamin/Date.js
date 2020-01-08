@@ -15,14 +15,14 @@
 };
 
 describe(
-    'lpad',
+    'padStart',
     function()
     {
-        assert.strictEquals("typeof String.prototype.lpad", "'function'");
-        assert.strictEquals("''.lpad('00')", "'00'");
-        assert.strictEquals("'1'.lpad('00')", "'01'");
-        assert.strictEquals("'12'.lpad('00')", "'12'");
-        assert.strictEquals("'123'.lpad('00')", "'123'");
+        assert.strictEquals("typeof String.prototype.padStart", "'function'");
+        assert.strictEquals("''.padStart(2, '0')", "'00'");
+        assert.strictEquals("'1'.padStart(2, '0')", "'01'");
+        assert.strictEquals("'12'.padStart(2, '0')", "'12'");
+        assert.strictEquals("'123'.padStart(2, '0')", "'123'");
     });
 
 describe(
@@ -76,7 +76,7 @@ describe(
                         for(var year = 2000;year <= 2010;++year)
                             assert.strictEquals(
                                 "new Date(new Date(0).setFullYear(" + year.toString() + ")).formatDate('yy')",
-                                "'" + (year % 100).toString().lpad('00') + "'");
+                                "'" + (year % 100).toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -90,7 +90,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "new Date(new Date(0).setFullYear(" + year.toString() + ")).formatDate('yyyy')",
-                                    "'" + year.toString().lpad('0000') + "'");
+                                    "'" + year.toString().padStart(4, '0') + "'");
                             });
                     });
 
@@ -111,7 +111,7 @@ describe(
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
                                 "new Date(2000, " + (month - 1).toString() + ").formatDate('MM')",
-                                "'" + month.toString().lpad('00') + "'");
+                                "'" + month.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -161,7 +161,7 @@ describe(
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
                                 "new Date(2000, " + (month - 1).toString() + ").formatDate('LL')",
-                                "'" + month.toString().lpad('00') + "'");
+                                "'" + month.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -211,7 +211,7 @@ describe(
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
                                 "new Date(2000, 0, " + day.toString() + ").formatDate('dd')",
-                                "'" + day.toString().lpad('00') + "'");
+                                "'" + day.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -231,7 +231,7 @@ describe(
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
                                 "new Date(2000, 0, 1, " + hour.toString() + ").formatDate('HH')",
-                                "'" + hour.toString().lpad('00') + "'");
+                                "'" + hour.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -251,7 +251,7 @@ describe(
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
                                 "new Date(2000, 0, 1, 0, " + minute.toString() + ").formatDate('mm')",
-                                "'" + minute.toString().lpad('00') + "'");
+                                "'" + minute.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -271,7 +271,7 @@ describe(
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
                                 "new Date(2000, 0, 1, 0, 0, " + second.toString() + ").formatDate('ss')",
-                                "'" + second.toString().lpad('00') + "'");
+                                "'" + second.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -285,7 +285,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "new Date(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ").formatDate('s.SSS')",
-                                    "'0." + millisecond.toString().lpad('000') + "'");
+                                    "'0." + millisecond.toString().padStart(3, '0') + "'");
                             });
                     });
 
@@ -359,8 +359,8 @@ describe(
                                 assert.strictEquals(
                                     date + ".formatDate('xx')",
                                     "'" +(offset >= 0 ? '+' : '-') +
-                                    (Math.abs(offset) / 60).toString().lpad('00') +
-                                    (offset % 60).toString().lpad('00') + "'");
+                                    (Math.abs(offset) / 60).toString().padStart(2, '0') +
+                                    (offset % 60).toString().padStart(2, '0') + "'");
                             });
                     });
 
@@ -377,9 +377,9 @@ describe(
                                 assert.strictEquals(
                                     date + ".formatDate('xxx')",
                                     "'" + (offset >= 0 ? '+' : '-') +
-                                    (Math.abs(offset) / 60).toString().lpad('00') +
+                                    (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     ':' +
-                                    (offset % 60).toString().lpad('00') + "'");
+                                    (offset % 60).toString().padStart(2, '0') + "'");
                             });
                     });
 
@@ -396,8 +396,8 @@ describe(
                                 assert.strictEquals(
                                    date + ".formatDate('XX')",
                                      offset === 0 ? "'Z'" : "'" + (offset >= 0 ? '+' : '-') +
-                                    (Math.abs(offset) / 60).toString().lpad('00') +
-                                    (offset % 60).toString().lpad('00') + "'");
+                                    (Math.abs(offset) / 60).toString().padStart(2, '0') +
+                                    (offset % 60).toString().padStart(2, '0') + "'");
                             });
                     });
 
@@ -414,9 +414,9 @@ describe(
                                 assert.strictEquals(
                                    date + ".formatDate('XXX')",
                                      offset === 0 ? "'Z'" : "'" + (offset >= 0 ? '+' : '-') +
-                                    (Math.abs(offset) / 60).toString().lpad('00') +
+                                    (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     ':' +
-                                    (offset % 60).toString().lpad('00') + "'");
+                                    (offset % 60).toString().padStart(2, '0') + "'");
                             });
                     });
 
@@ -487,7 +487,7 @@ describe(
                         for(var year = 2000;year <= 2010;++year)
                             assert.strictEquals(
                                 "new Date(new Date(0).setUTCFullYear(" + year.toString() + ")).formatUTCDate('yy')",
-                                "'" + (year % 100).toString().lpad('00') + "'");
+                                "'" + (year % 100).toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -501,7 +501,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "new Date(new Date(0).setUTCFullYear(" + year.toString() + ")).formatUTCDate('yyyy')",
-                                    "'" + year.toString().lpad('0000') + "'");
+                                    "'" + year.toString().padStart(4, '0') + "'");
                             });
                     });
 
@@ -522,7 +522,7 @@ describe(
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('MM')",
-                                "'" + month.toString().lpad('00') + "'");
+                                "'" + month.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -572,7 +572,7 @@ describe(
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('LL')",
-                                "'" + month.toString().lpad('00') + "'");
+                                "'" + month.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -622,7 +622,7 @@ describe(
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('dd')",
-                                "'" + day.toString().lpad('00') + "'");
+                                "'" + day.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -642,7 +642,7 @@ describe(
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 6, 1, " + hour.toString() + ")).formatUTCDate('HH')",
-                                "'" + hour.toString().lpad('00') + "'");
+                                "'" + hour.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -662,7 +662,7 @@ describe(
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")).formatUTCDate('mm')",
-                                "'" + minute.toString().lpad('00') + "'");
+                                "'" + minute.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -682,7 +682,7 @@ describe(
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
                                 "new Date(Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")).formatUTCDate('ss')",
-                                "'" + second.toString().lpad('00') + "'");
+                                "'" + second.toString().padStart(2, '0') + "'");
                     });
 
                 describe(
@@ -696,7 +696,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "new Date(Date.UTC(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ")).formatUTCDate('s.SSS')",
-                                    "'0." + millisecond.toString().lpad('000') + "'");
+                                    "'0." + millisecond.toString().padStart(3, '0') + "'");
                             });
                     });
 
@@ -842,7 +842,7 @@ describe(
                     {
                         for(var year = 1;year <= 10;++year)
                             assert.strictEquals(
-                                "parseDate('yy', '" + year.toString().lpad('00') + "').valueOf()",
+                                "parseDate('yy', '" + year.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(0).setFullYear(" + (2000 + year).toString() + ")");
 
                         ['', 'a', 'b', 'c', 'a10', '10a'].forEach(
@@ -866,7 +866,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseDate('yyyy', '" + year.toString().lpad('0000') + "').valueOf()",
+                                    "parseDate('yyyy', '" + year.toString().padStart(4, '0') + "').valueOf()",
                                     "new Date(0).setFullYear(" + year.toString() + ")");
                             });
 
@@ -908,7 +908,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseDate('y-MM', '2000-" + month.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-MM', '2000-" + month.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, " + (month - 1).toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '0', '13'].forEach(
@@ -1008,7 +1008,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseDate('y-LL', '2000-" + month.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-LL', '2000-" + month.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, " + (month - 1).toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '0', '13'].forEach(
@@ -1144,7 +1144,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "parseDate('y-M-dd', '2000-1-" + day.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-M-dd', '2000-1-" + day.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, 0, " + day.toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a'].forEach(
@@ -1180,7 +1180,7 @@ describe(
 
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseDate('y-M-dd', '2001-" + month.toString() + "-" + daysInMonth[month - 1].toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-M-dd', '2001-" + month.toString() + "-" + daysInMonth[month - 1].toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2001, " + (month - 1).toString() + ", " + daysInMonth[month - 1].toString() + ").valueOf()");
 
                         assert.strictEquals(
@@ -1219,7 +1219,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "parseDate('y-M-d HH', '2000-1-1 " + hour.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-M-d HH', '2000-1-1 " + hour.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, 0, 1, " + hour.toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '24'].forEach(
@@ -1259,7 +1259,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-M-d H:mm', '2000-1-1 0:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-M-d H:mm', '2000-1-1 0:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, 0, 1, 0, " + minute.toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a00', '00a', '60'].forEach(
@@ -1299,7 +1299,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "parseDate('y-M-d H:m:ss', '2000-1-1 0:0:" + second.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-M-d H:m:ss', '2000-1-1 0:0:" + second.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(2000, 0, 1, 0, 0, " + second.toString() + ").valueOf()");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a00', '00a', '60'].forEach(
@@ -1323,7 +1323,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseDate('y-M-d H:m:s.SSS', '2000-1-1 0:0:0." + millisecond.toString().lpad('000') + "').valueOf()",
+                                    "parseDate('y-M-d H:m:s.SSS', '2000-1-1 0:0:0." + millisecond.toString().padStart(3, '0') + "').valueOf()",
                                     "new Date(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ").valueOf()");
                             });
                     });
@@ -1336,22 +1336,22 @@ describe(
                         {
                             for(var minute = 0;minute < 60;++minute)
                                 assert.strictEquals(
-                                    "parseDate('y-Mxx', '2000-" + month.toString() + "+00" + minute.toString().lpad('00') + "').valueOf()",
+                                    "parseDate('y-Mxx', '2000-" + month.toString() + "+00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") - " + minute.toString() + " * 60 * 1000");
 
                             for(var minute = 0;minute < 60;++minute)
                                 assert.strictEquals(
-                                    "parseDate('y-Mxx', '2000-" + month.toString() + "-00" + minute.toString().lpad('00') + "').valueOf()",
+                                    "parseDate('y-Mxx', '2000-" + month.toString() + "-00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") + " + minute.toString() + " * 60 * 1000");
 
                             for(var hour = 0;hour <= 12;++hour)
                                 assert.strictEquals(
-                                    "parseDate('y-Mxx', '2000-" + month.toString() + "+" + hour.toString().lpad('00') + "00').valueOf()",
+                                    "parseDate('y-Mxx', '2000-" + month.toString() + "+" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") - " + hour.toString() + " * 60 * 60 * 1000");
 
                             for(var hour = 0;hour <= 12;++hour)
                                 assert.strictEquals(
-                                    "parseDate('y-Mxx', '2000-" + month.toString() + "-" + hour.toString().lpad('00') + "00').valueOf()",
+                                    "parseDate('y-Mxx', '2000-" + month.toString() + "-" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") + " + hour.toString() + " * 60 * 60 * 1000");
                         }
                     });
@@ -1362,22 +1362,22 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-Mxxx', '2000-7+00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-Mxxx', '2000-7+00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-Mxxx', '2000-7-00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-Mxxx', '2000-7-00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 0;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-Mxxx', '2000-7+" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseDate('y-Mxxx', '2000-7+" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 0;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-Mxxx', '2000-7-" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseDate('y-Mxxx', '2000-7-" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
@@ -1391,22 +1391,22 @@ describe(
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-MXX', '2000-7+00" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-MXX', '2000-7+00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-MXX', '2000-7-00" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-MXX', '2000-7-00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-MXX', '2000-7+" + hour.toString().lpad('00') + "00').valueOf()",
+                                "parseDate('y-MXX', '2000-7+" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-MXX', '2000-7-" + hour.toString().lpad('00') + "00').valueOf()",
+                                "parseDate('y-MXX', '2000-7-" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
@@ -1420,22 +1420,22 @@ describe(
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-MXXX', '2000-7+00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-MXXX', '2000-7+00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseDate('y-MXXX', '2000-7-00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseDate('y-MXXX', '2000-7-00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-MXXX', '2000-7+" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseDate('y-MXXX', '2000-7+" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseDate('y-MXXX', '2000-7-" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseDate('y-MXXX', '2000-7-" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
@@ -1585,7 +1585,7 @@ describe(
                     {
                         for(var year = 1;year <= 10;++year)
                             assert.strictEquals(
-                                "parseUTCDate('yy', '" + year.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('yy', '" + year.toString().padStart(2, '0') + "').valueOf()",
                                 "new Date(0).setUTCFullYear(" + (2000 + year).toString() + ")");
 
                         ['', 'a', 'b', 'c', 'a10', '10a'].forEach(
@@ -1609,7 +1609,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseUTCDate('yyyy', '" + year.toString().lpad('0000') + "').valueOf()",
+                                    "parseUTCDate('yyyy', '" + year.toString().padStart(4, '0') + "').valueOf()",
                                     "new Date(0).setUTCFullYear(" + year.toString() + ")");
                             });
 
@@ -1651,7 +1651,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseUTCDate('y-MM', '2000-" + month.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-MM', '2000-" + month.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, " + (month - 1).toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '0', '13'].forEach(
@@ -1751,7 +1751,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseUTCDate('y-LL', '2000-" + month.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-LL', '2000-" + month.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, " + (month - 1).toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '0', '13'].forEach(
@@ -1887,7 +1887,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "parseUTCDate('y-M-dd', '2000-1-" + day.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-M-dd', '2000-1-" + day.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 0, " + day.toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a'].forEach(
@@ -1923,7 +1923,7 @@ describe(
 
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "parseUTCDate('y-M-dd', '2001-" + month.toString() + "-" + daysInMonth[month - 1].toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-M-dd', '2001-" + month.toString() + "-" + daysInMonth[month - 1].toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2001, " + (month - 1).toString() + ", " + daysInMonth[month - 1].toString() + ")");
 
                         assert.strictEquals(
@@ -1962,7 +1962,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-M-d HH', '2000-1-1 " + hour.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-M-d HH', '2000-1-1 " + hour.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 0, 1, " + hour.toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a01', '01a', '24'].forEach(
@@ -2002,7 +2002,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-M-d H:mm', '2000-1-1 0:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-M-d H:mm', '2000-1-1 0:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a00', '00a', '60'].forEach(
@@ -2042,7 +2042,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "parseUTCDate('y-M-d H:m:ss', '2000-1-1 0:0:" + second.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-M-d H:m:ss', '2000-1-1 0:0:" + second.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")");
 
                         ['', 'a', 'b', 'c', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a00', '00a', '60'].forEach(
@@ -2066,7 +2066,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "parseUTCDate('y-M-d H:m:s.SSS', '2000-1-1 0:0:0." + millisecond.toString().lpad('000') + "').valueOf()",
+                                    "parseUTCDate('y-M-d H:m:s.SSS', '2000-1-1 0:0:0." + millisecond.toString().padStart(3, '0') + "').valueOf()",
                                     "Date.UTC(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ")");
                             });
                     });
@@ -2079,22 +2079,22 @@ describe(
                         {
                             for(var minute = 0;minute < 60;++minute)
                                 assert.strictEquals(
-                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "+00" + minute.toString().lpad('00') + "').valueOf()",
+                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "+00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") - " + minute.toString() + " * 60 * 1000");
 
                             for(var minute = 0;minute < 60;++minute)
                                 assert.strictEquals(
-                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "-00" + minute.toString().lpad('00') + "').valueOf()",
+                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "-00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") + " + minute.toString() + " * 60 * 1000");
 
                             for(var hour = 0;hour <= 12;++hour)
                                 assert.strictEquals(
-                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "+" + hour.toString().lpad('00') + "00').valueOf()",
+                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "+" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") - " + hour.toString() + " * 60 * 60 * 1000");
 
                             for(var hour = 0;hour <= 12;++hour)
                                 assert.strictEquals(
-                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "-" + hour.toString().lpad('00') + "00').valueOf()",
+                                    "parseUTCDate('y-Mxx', '2000-" + month.toString() + "-" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                     "Date.UTC(2000, " + (month - 1).toString() + ") + " + hour.toString() + " * 60 * 60 * 1000");
                         }
                     });
@@ -2105,22 +2105,22 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-Mxxx', '2000-7+00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-Mxxx', '2000-7+00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-Mxxx', '2000-7-00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-Mxxx', '2000-7-00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 0;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-Mxxx', '2000-7+" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseUTCDate('y-Mxxx', '2000-7+" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 0;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-Mxxx', '2000-7-" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseUTCDate('y-Mxxx', '2000-7-" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
@@ -2134,22 +2134,22 @@ describe(
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXX', '2000-7+00" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-MXX', '2000-7+00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXX', '2000-7-00" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-MXX', '2000-7-00" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXX', '2000-7+" + hour.toString().lpad('00') + "00').valueOf()",
+                                "parseUTCDate('y-MXX', '2000-7+" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXX', '2000-7-" + hour.toString().lpad('00') + "00').valueOf()",
+                                "parseUTCDate('y-MXX', '2000-7-" + hour.toString().padStart(2, '0') + "00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
@@ -2163,22 +2163,22 @@ describe(
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXXX', '2000-7+00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-MXXX', '2000-7+00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) - " + minute.toString() + " * 60 * 1000");
 
                         for(var minute = 1;minute < 60;++minute)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXXX', '2000-7-00:" + minute.toString().lpad('00') + "').valueOf()",
+                                "parseUTCDate('y-MXXX', '2000-7-00:" + minute.toString().padStart(2, '0') + "').valueOf()",
                                 "Date.UTC(2000, 6) + " + minute.toString() + " * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXXX', '2000-7+" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseUTCDate('y-MXXX', '2000-7+" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) - " + hour.toString() + " * 60 * 60 * 1000");
 
                         for(var hour = 1;hour <= 12;++hour)
                             assert.strictEquals(
-                                "parseUTCDate('y-MXXX', '2000-7-" + hour.toString().lpad('00') + ":00').valueOf()",
+                                "parseUTCDate('y-MXXX', '2000-7-" + hour.toString().padStart(2, '0') + ":00').valueOf()",
                                 "Date.UTC(2000, 6) + " + hour.toString() + " * 60 * 60 * 1000");
                     });
 
