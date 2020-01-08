@@ -822,7 +822,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "parseDate('y', '" + year.toString() + "').valueOf()",
-                                    "new Date(0).setFullYear(" + year.toString() + ")");
+                                    "new Date(new Date(0).setFullYear(" + year.toString() + ")).setHours(0)");
                             });
 
                         [ '', 'a', 'b', 'c', 'a1', '1a', (Date.maxYear + 1).toString()].forEach(
@@ -843,7 +843,7 @@ describe(
                         for(var year = 1;year <= 10;++year)
                             assert.strictEquals(
                                 "parseDate('yy', '" + year.toString().padStart(2, '0') + "').valueOf()",
-                                "new Date(0).setFullYear(" + (2000 + year).toString() + ")");
+                                "new Date(new Date(0).setFullYear(" + (2000 + year).toString() + ")).setHours(0)");
 
                         ['', 'a', 'b', 'c', 'a10', '10a'].forEach(
                             function(
@@ -867,7 +867,7 @@ describe(
                             {
                                 assert.strictEquals(
                                     "parseDate('yyyy', '" + year.toString().padStart(4, '0') + "').valueOf()",
-                                    "new Date(0).setFullYear(" + year.toString() + ")");
+                                    "new Date(new Date(0).setFullYear(" + year.toString() + ")).setHours(0)");
                             });
 
 
