@@ -49,10 +49,10 @@ describe(
         assert.strictEquals("typeof dateFieldSymbols", "'object'");
 
         describe(
-            'Date.prototype.formatDate(dateFormatPattern)',
+            'formatDate(dateFormatPattern, date)',
             function()
             {
-                assert.strictEquals("typeof Date.prototype.formatDate", "'function'");
+                assert.strictEquals("typeof formatDate", "'function'");
 
                 describe(
                     'Symbol: y',
@@ -64,7 +64,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(new Date(0).setFullYear(" + year.toString() + ")).formatDate('y')",
+                                    "formatDate('y', new Date(new Date(0).setFullYear(" + year.toString() + ")))",
                                     "'" + year.toString() + "'");
                             });
                     });
@@ -75,7 +75,7 @@ describe(
                     {
                         for(var year = 2000;year <= 2010;++year)
                             assert.strictEquals(
-                                "new Date(new Date(0).setFullYear(" + year.toString() + ")).formatDate('yy')",
+                                "formatDate('yy', new Date(new Date(0).setFullYear(" + year.toString() + ")))",
                                 "'" + (year % 100).toString().padStart(2, '0') + "'");
                     });
 
@@ -89,7 +89,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(new Date(0).setFullYear(" + year.toString() + ")).formatDate('yyyy')",
+                                    "formatDate('yyyy', new Date(new Date(0).setFullYear(" + year.toString() + ")))",
                                     "'" + year.toString().padStart(4, '0') + "'");
                             });
                     });
@@ -100,7 +100,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('M')",
+                                "formatDate('M', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + month.toString() + "'");
                     });
 
@@ -110,7 +110,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('MM')",
+                                "formatDate('MM', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + month.toString().padStart(2, '0') + "'");
                     });
 
@@ -120,7 +120,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('MMM')",
+                                "formatDate('MMM', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months.format.abbreviated[month] + "'");
                     });
 
@@ -130,7 +130,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('MMMM')",
+                                "formatDate('MMMM', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months.format.wide[month] + "'");
                     });
 
@@ -140,7 +140,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('MMMMM')",
+                                "formatDate('MMMMM', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months.format.narrow[month] + "'");
                     });
 
@@ -150,7 +150,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('L')",
+                                "formatDate('L', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + month.toString() + "'");
                     });
 
@@ -160,7 +160,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('LL')",
+                                "formatDate('LL', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + month.toString().padStart(2, '0') + "'");
                     });
 
@@ -170,7 +170,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('LLL')",
+                                "formatDate('LLL', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months['stand-alone'].abbreviated[month] + "'");
                     });
 
@@ -180,7 +180,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('LLLL')",
+                                "formatDate('LLLL', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months['stand-alone'].wide[month] + "'");
                     });
 
@@ -190,7 +190,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(2000, " + (month - 1).toString() + ").formatDate('LLLLL')",
+                                "formatDate('LLLLL', new Date(2000, " + (month - 1).toString() + "))",
                                 "'" + calendar.months['stand-alone'].narrow[month] + "'");
                     });
 
@@ -200,7 +200,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('d')",
+                                "formatDate('d', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + day.toString() + "'");
                     });
 
@@ -210,7 +210,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('dd')",
+                                "formatDate('dd', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + day.toString().padStart(2, '0') + "'");
                     });
 
@@ -220,7 +220,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, " + hour.toString() + ").formatDate('H')",
+                                "formatDate('H', new Date(2000, 0, 1, " + hour.toString() + "))",
                                 "'" + hour.toString() + "'");
                     });
 
@@ -230,7 +230,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, " + hour.toString() + ").formatDate('HH')",
+                                "formatDate('HH', new Date(2000, 0, 1, " + hour.toString() + "))",
                                 "'" + hour.toString().padStart(2, '0') + "'");
                     });
 
@@ -240,7 +240,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, 0, " + minute.toString() + ").formatDate('m')",
+                                "formatDate('m', new Date(2000, 0, 1, 0, " + minute.toString() + "))",
                                 "'" + minute.toString() + "'");
                     });
 
@@ -250,7 +250,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, 0, " + minute.toString() + ").formatDate('mm')",
+                                "formatDate('mm', new Date(2000, 0, 1, 0, " + minute.toString() + "))",
                                 "'" + minute.toString().padStart(2, '0') + "'");
                     });
 
@@ -260,7 +260,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, 0, 0, " + second.toString() + ").formatDate('s')",
+                                "formatDate('s', new Date(2000, 0, 1, 0, 0, " + second.toString() + "))",
                                 "'" + second.toString() + "'");
                     });
 
@@ -270,7 +270,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "new Date(2000, 0, 1, 0, 0, " + second.toString() + ").formatDate('ss')",
+                                "formatDate('ss', new Date(2000, 0, 1, 0, 0, " + second.toString() + "))",
                                 "'" + second.toString().padStart(2, '0') + "'");
                     });
 
@@ -284,7 +284,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ").formatDate('s.SSS')",
+                                    "formatDate('s.SSS', new Date(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + "))",
                                     "'0." + millisecond.toString().padStart(3, '0') + "'");
                             });
                     });
@@ -297,7 +297,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('EEE')",
+                                "formatDate('EEE', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + Date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -310,7 +310,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('EEEE')",
+                                "formatDate('EEEE', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + Date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -323,7 +323,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEE')",
+                                "formatDate('EEEEE', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + Date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -336,7 +336,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(2000, 0, " + day.toString() + ").formatDate('EEEEEE')",
+                                "formatDate('EEEEEE', new Date(2000, 0, " + day.toString() + "))",
                                 "'" + Date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -357,7 +357,7 @@ describe(
                             {
                                 var offset = -eval(date).getTimezoneOffset();
                                 assert.strictEquals(
-                                    date + ".formatDate('xx')",
+                                    "formatDate('xx', " + date +")",
                                     "'" +(offset >= 0 ? '+' : '-') +
                                     (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     (offset % 60).toString().padStart(2, '0') + "'");
@@ -375,7 +375,7 @@ describe(
                             {
                                 var offset = -eval(date).getTimezoneOffset();
                                 assert.strictEquals(
-                                    date + ".formatDate('xxx')",
+                                    "formatDate('xxx', " + date + ")",
                                     "'" + (offset >= 0 ? '+' : '-') +
                                     (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     ':' +
@@ -394,7 +394,7 @@ describe(
                             {
                                 var offset = -eval(date).getTimezoneOffset();
                                 assert.strictEquals(
-                                   date + ".formatDate('XX')",
+                                    "formatDate('XX', " + date + ")",
                                      offset === 0 ? "'Z'" : "'" + (offset >= 0 ? '+' : '-') +
                                     (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     (offset % 60).toString().padStart(2, '0') + "'");
@@ -412,7 +412,7 @@ describe(
                             {
                                 var offset = -eval(date).getTimezoneOffset();
                                 assert.strictEquals(
-                                   date + ".formatDate('XXX')",
+                                    "formatDate('XXX', " + date + ")",
                                      offset === 0 ? "'Z'" : "'" + (offset >= 0 ? '+' : '-') +
                                     (Math.abs(offset) / 60).toString().padStart(2, '0') +
                                     ':' +
@@ -425,11 +425,11 @@ describe(
                     function()
                     {
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'A'yyyy\")",
+                            "formatDate(\"'A'yyyy\", new Date(2000, 0, 1))",
                             "'A2000'");
 
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'yyyy'yyyy\")",
+                            "formatDate(\"'yyyy'yyyy\", new Date(2000, 0, 1))",
                             "'yyyy2000'");
                     });
 
@@ -438,32 +438,32 @@ describe(
                     function()
                     {
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"''yyyy\")",
+                            "formatDate(\"''yyyy\", new Date(2000, 0, 1))",
                             "\"'2000\"");
 
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'''AB'yyyy\")",
+                            "formatDate(\"'''AB'yyyy\", new Date(2000, 0, 1))",
                             "\"'AB2000\"");
 
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'''''AB'yyyy\")",
+                            "formatDate(\"'''''AB'yyyy\", new Date(2000, 0, 1))",
                             "\"''AB2000\"");
 
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'A''B'yyyy\")",
+                            "formatDate(\"'A''B'yyyy\", new Date(2000, 0, 1))",
                             "\"A'B2000\"");
 
                         assert.strictEquals(
-                            "new Date(2000, 0, 1).formatDate(\"'AB'''yyyy\")",
+                            "formatDate(\"'AB'''yyyy\", new Date(2000, 0, 1))",
                             "\"AB'2000\"");
                     });
             });
 
         describe(
-            'Date.prototype.formatUTCDate(dateFormatPattern)',
+            'formatUTCDate(dateFormatPattern, date)',
             function()
             {
-                assert.strictEquals("typeof Date.prototype.formatUTCDate", "'function'");
+                assert.strictEquals("typeof formatUTCDate", "'function'");
 
                 describe(
                     'Symbol: y',
@@ -475,7 +475,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(new Date(0).setUTCFullYear(" + year.toString() + ")).formatUTCDate('y')",
+                                    "formatUTCDate('y', new Date(new Date(0).setUTCFullYear(" + year.toString() + ")))",
                                     "'" + year.toString() + "'");
                             });
                     });
@@ -486,7 +486,7 @@ describe(
                     {
                         for(var year = 2000;year <= 2010;++year)
                             assert.strictEquals(
-                                "new Date(new Date(0).setUTCFullYear(" + year.toString() + ")).formatUTCDate('yy')",
+                                "formatUTCDate('yy', new Date(new Date(0).setUTCFullYear(" + year.toString() + ")))",
                                 "'" + (year % 100).toString().padStart(2, '0') + "'");
                     });
 
@@ -500,7 +500,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(new Date(0).setUTCFullYear(" + year.toString() + ")).formatUTCDate('yyyy')",
+                                    "formatUTCDate('yyyy', new Date(new Date(0).setUTCFullYear(" + year.toString() + ")))",
                                     "'" + year.toString().padStart(4, '0') + "'");
                             });
                     });
@@ -511,7 +511,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('M')",
+                                "formatUTCDate('M', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + month.toString() + "'");
                     });
 
@@ -521,7 +521,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('MM')",
+                                "formatUTCDate('MM', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + month.toString().padStart(2, '0') + "'");
                     });
 
@@ -531,7 +531,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('MMM')",
+                                "formatUTCDate('MMM', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months.format.abbreviated[month] + "'");
                     });
 
@@ -541,7 +541,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('MMMM')",
+                                "formatUTCDate('MMMM', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months.format.wide[month] + "'");
                     });
 
@@ -551,7 +551,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('MMMMM')",
+                                "formatUTCDate('MMMMM', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months.format.narrow[month] + "'");
                     });
 
@@ -561,7 +561,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('L')",
+                                "formatUTCDate('L', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + month.toString() + "'");
                     });
 
@@ -571,7 +571,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('LL')",
+                                "formatUTCDate('LL', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + month.toString().padStart(2, '0') + "'");
                     });
 
@@ -581,7 +581,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('LLL')",
+                                "formatUTCDate('LLL', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months['stand-alone'].abbreviated[month] + "'");
                     });
 
@@ -591,7 +591,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('LLLL')",
+                                "formatUTCDate('LLLL', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months['stand-alone'].wide[month] + "'");
                     });
 
@@ -601,7 +601,7 @@ describe(
                     {
                         for(var month = 1;month <= 12;++month)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, " + (month - 1).toString() + ")).formatUTCDate('LLLLL')",
+                                "formatUTCDate('LLLLL', new Date(Date.UTC(2000, " + (month - 1).toString() + ")))",
                                 "'" + calendar.months['stand-alone'].narrow[month] + "'");
                     });
 
@@ -611,7 +611,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('d')",
+                                "formatUTCDate('d', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + day.toString() + "'");
                     });
 
@@ -621,7 +621,7 @@ describe(
                     {
                         for(var day = 1;day <= 31;++day)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('dd')",
+                                "formatUTCDate('dd', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + day.toString().padStart(2, '0') + "'");
                     });
 
@@ -631,7 +631,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 6, 1, " + hour.toString() + ")).formatUTCDate('H')",
+                                "formatUTCDate('H', new Date(Date.UTC(2000, 6, 1, " + hour.toString() + ")))",
                                 "'" + hour.toString() + "'");
                     });
 
@@ -641,7 +641,7 @@ describe(
                     {
                         for(var hour = 0;hour < 24;++hour)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 6, 1, " + hour.toString() + ")).formatUTCDate('HH')",
+                                "formatUTCDate('HH', new Date(Date.UTC(2000, 6, 1, " + hour.toString() + ")))",
                                 "'" + hour.toString().padStart(2, '0') + "'");
                     });
 
@@ -651,7 +651,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")).formatUTCDate('m')",
+                                "formatUTCDate('m', new Date(Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")))",
                                 "'" + minute.toString() + "'");
                     });
 
@@ -661,7 +661,7 @@ describe(
                     {
                         for(var minute = 0;minute < 60;++minute)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")).formatUTCDate('mm')",
+                                "formatUTCDate('mm', new Date(Date.UTC(2000, 0, 1, 0, " + minute.toString() + ")))",
                                 "'" + minute.toString().padStart(2, '0') + "'");
                     });
 
@@ -671,7 +671,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")).formatUTCDate('s')",
+                                "formatUTCDate('s', new Date(Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")))",
                                 "'" + second.toString() + "'");
                     });
 
@@ -681,7 +681,7 @@ describe(
                     {
                         for(var second = 0;second < 60;++second)
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")).formatUTCDate('ss')",
+                                "formatUTCDate('ss', new Date(Date.UTC(2000, 0, 1, 0, 0, " + second.toString() + ")))",
                                 "'" + second.toString().padStart(2, '0') + "'");
                     });
 
@@ -695,7 +695,7 @@ describe(
                                 )
                             {
                                 assert.strictEquals(
-                                    "new Date(Date.UTC(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ")).formatUTCDate('s.SSS')",
+                                    "formatUTCDate('s.SSS', new Date(Date.UTC(2000, 0, 1, 0, 0, 0, " + millisecond.toString() + ")))",
                                     "'0." + millisecond.toString().padStart(3, '0') + "'");
                             });
                     });
@@ -708,7 +708,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEE')",
+                                "formatUTCDate('EEE', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + Date.calendar.days.format.abbreviated[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -721,7 +721,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEE')",
+                                "formatUTCDate('EEEE', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + Date.calendar.days.format.wide[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -734,7 +734,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEE')",
+                                "formatUTCDate('EEEEE', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + Date.calendar.days.format.narrow[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -747,7 +747,7 @@ describe(
                         {
                             var date = new Date(2000, 0, day);
                             assert.strictEquals(
-                                "new Date(Date.UTC(2000, 0, " + day.toString() + ")).formatUTCDate('EEEEEE')",
+                                "formatUTCDate('EEEEEE', new Date(Date.UTC(2000, 0, " + day.toString() + ")))",
                                 "'" + Date.calendar.days.format.short[Date.dayKeys[date.getDay()]] + "'");
                         }
                     });
@@ -761,7 +761,7 @@ describe(
                                 date
                                 )
                             {
-                                assert.strictEquals(date + ".formatUTCDate('xx')", "'+0000'");
+                                assert.strictEquals("formatUTCDate('xx', " + date + ")", "'+0000'");
                             });
                     });
 
@@ -774,7 +774,7 @@ describe(
                                 date
                                 )
                             {
-                                assert.strictEquals(date + ".formatUTCDate('xxx')", "'+00:00'");
+                                assert.strictEquals("formatUTCDate('xxx', " + date + ")", "'+00:00'");
                             });
                     });
 
@@ -787,7 +787,7 @@ describe(
                                 date
                                 )
                             {
-                                assert.strictEquals(date + ".formatUTCDate('XX')", "'Z'");
+                                assert.strictEquals("formatUTCDate('XX', " + date + ")", "'Z'");
                             });
                     });
 
@@ -800,7 +800,7 @@ describe(
                                 date
                                 )
                             {
-                                assert.strictEquals(date + ".formatUTCDate('XXX')", "'Z'");
+                                assert.strictEquals("formatUTCDate('XXX', " + date + ")", "'Z'");
                             });
                     });
             });
